@@ -1,8 +1,12 @@
 {
-  "extends": ["tslint:latest", "tslint-config-prettier"],
-  "rules":{
-      "object-literal-sort-keys":false,
-      "no-submodule-imports":false,
-      "ordered-imports":true
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "object-literal-sort-keys": false,
+    "no-submodule-imports": false,
+    "ordered-imports": true,
+    "no-console": false
   }
 }
