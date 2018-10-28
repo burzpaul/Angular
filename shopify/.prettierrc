@@ -1,9 +1,10 @@
 {
   "arrowParens": "avoid",
-  "printWidth": 120,
-  "singleQuote": true,
-  "useTabs": false,
-  "tabWidth": 2,
+  "bracketSpacing": true,
+  "parser": "typescript",
+  "printWidth": 80,
   "semi": true,
-  "bracketSpacing": true
+  "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false
 }
