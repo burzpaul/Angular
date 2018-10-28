@@ -7,12 +7,12 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit {
-  recipeId: number;
-  editing = false;
+  public recipeId: number;
+  public editing = false;
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.recipeId = +params['id'];
       this.editing = params['id'] != null;

@@ -9,7 +9,7 @@ import { Recipe } from './../../models/recipe.model';
 })
 export class RecipeItemComponent {
   @Input()
-  recipe: Recipe;
+  public recipe: Recipe;
   @Input()
-  recipeId: number;
+  public recipeId: number;
 }
