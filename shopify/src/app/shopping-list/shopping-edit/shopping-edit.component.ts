@@ -10,13 +10,14 @@ import { ShoppingListService } from './../services/shopping-list.service';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit {
-  @ViewChild('nameInput') nameInputRef: ElementRef;
-  @ViewChild('amountInput') amountInputRef: ElementRef;
+  @ViewChild('nameInput')
+  nameInputRef: ElementRef;
+  @ViewChild('amountInput')
+  amountInputRef: ElementRef;
 
-  constructor(private shoppingListService: ShoppingListService) { }
+  constructor(private shoppingListService: ShoppingListService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onAddItem() {
     const name = this.nameInputRef.nativeElement.value;
