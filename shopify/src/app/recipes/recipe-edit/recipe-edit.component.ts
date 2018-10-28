@@ -10,15 +10,12 @@ export class RecipeEditComponent implements OnInit {
   recipeId: number;
   editing = false;
 
-  constructor(
-    private route: ActivatedRoute
-  ) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.params
-      .subscribe((params: Params) => {
-        this.recipeId = +params['id'];
-        this.editing = params['id'] != null;
-      });
+    this.route.params.subscribe((params: Params) => {
+      this.recipeId = +params['id'];
+      this.editing = params['id'] != null;
+    });
   }
 }
