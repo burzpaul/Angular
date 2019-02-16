@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 //#region Modules
@@ -19,11 +20,12 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 //#endregion
 
 //#region Services
+import { ShoppingListService } from './shopping-list/services/shopping-list.service';
 //#endregion
 
+//#region Directives
 import { DropdownDirective } from './shared/directives/dropdown.directive';
-
-import { ShoppingListService } from './shopping-list/services/shopping-list.service';
+//#endregion
 
 @NgModule({
   declarations: [
@@ -39,7 +41,7 @@ import { ShoppingListService } from './shopping-list/services/shopping-list.serv
     RecipeInfoComponent,
     RecipeEditComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [ShoppingListService],
   bootstrap: [AppComponent]
 })
