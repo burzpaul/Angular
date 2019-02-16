@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 //#region Modules
@@ -20,10 +20,12 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 //#endregion
 
 //#region Services
+import { RecipeService } from './recipes/services/recipe.service';
 import { ShoppingListService } from './shopping-list/services/shopping-list.service';
 //#endregion
 
 //#region Directives
+
 import { DropdownDirective } from './shared/directives/dropdown.directive';
 //#endregion
 
@@ -41,8 +43,8 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
     RecipeInfoComponent,
     RecipeEditComponent
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule],
-  providers: [ShoppingListService],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule],
+  providers: [ShoppingListService, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
