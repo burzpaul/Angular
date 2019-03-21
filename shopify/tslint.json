@@ -18,6 +18,9 @@
     "no-console": {
         "severity": "warning",
         "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
-    }
+    },
+    "no-any" :{
+      "severity": "error"
+    },
   }
 }
