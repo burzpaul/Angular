@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { Ingredient } from '../shared/models/ingredient.model';
 
-import { ShoppingListService } from './services/shopping-list.service';
+import { ShoppingListService } from '../core/services/shopping-list.service';
 
 @Component({
   selector: 'app-shopping-list',

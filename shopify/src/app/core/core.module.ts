@@ -11,8 +11,8 @@ import { HomeComponent } from './home/home.component';
 //#endregion
 
 //#region Servcices
-import { RecipeService } from '../recipes/services/recipe.service';
-import { ShoppingListService } from '../shopping-list/services/shopping-list.service';
+import { RecipeService } from './services/recipe.service';
+import { ShoppingListService } from './services/shopping-list.service';
 //#endregion
 
 @NgModule({
