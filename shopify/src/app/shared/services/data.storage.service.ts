@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Recipe } from 'src/app/recipes/models/recipe.model';
+import { Recipe } from './../../recipes/models/recipe.model';
 import { RecipeService } from './../../recipes/services/recipe.service';
 
 @Injectable({
@@ -13,7 +13,10 @@ export class DataStorageService {
   constructor(private http: Http, private recipeSvc: RecipeService) {}
 
   storeRecipe(): Observable<Response> {
-    return this.http.put('https://shopify-test-api-d2acf.firebaseio.com/recipes.json', this.recipeSvc.getRecipes());
+    return this.http.put(
+      'https://shopify-test-api-d2acf.firebaseio.com/recipes.json',
+      this.recipeSvc.getRecipes()
+    );
   }
 
   getRecipes(): void {

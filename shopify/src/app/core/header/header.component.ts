@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { DataStorageService } from './../shared/services/data.storage.service';
+import { DataStorageService } from './../../shared/services/data.storage.service';
 
 @Component({
   selector: 'app-header',
