@@ -8,20 +8,16 @@ import { Ingredient } from './../../shared/models/ingredient.model';
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
-  styleUrls: ['./recipe-edit.component.css']
+  styleUrls: ['./recipe-edit.component.css'],
 })
 export class RecipeEditComponent implements OnInit {
-  public recipeForm: FormGroup;
+  recipeForm: FormGroup;
 
   private recipeId: number;
   private editMode = false;
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private recipeService: RecipeService
-  ) {}
+  constructor(private router: Router, private route: ActivatedRoute, private recipeService: RecipeService) {}
 
-  public ngOnInit() {
+  ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.recipeId = +params.id;
       this.editMode = params.id != null;
@@ -29,23 +25,20 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
-  public onAddIngredient(): void {
+  onAddIngredient(): void {
     (this.recipeForm.get('ingredients') as FormArray).push(
       new FormGroup({
         name: new FormControl(null, Validators.required),
-        amount: new FormControl(null, [
-          Validators.required,
-          Validators.pattern(/^[1-9]+[0-9]*$/)
-        ])
+        amount: new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
       })
     );
   }
 
-  public onDeleteIngredient(index: number): void {
+  onDeleteIngredient(index: number): void {
     (this.recipeForm.get('ingredients') as FormArray).removeAt(index);
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     if (this.editMode) {
       this.recipeService.updateRecipe(this.recipeId, this.recipeForm.value);
     } else {
@@ -54,7 +47,7 @@ export class RecipeEditComponent implements OnInit {
     this.onCancel();
   }
 
-  public onCancel(): void {
+  onCancel(): void {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
@@ -75,10 +68,7 @@ export class RecipeEditComponent implements OnInit {
           recipeIngredients.push(
             new FormGroup({
               name: new FormControl(ingredient.name, Validators.required),
-              amount: new FormControl(ingredient.amount, [
-                Validators.required,
-                Validators.pattern(/^[1-9]+[0-9]*$/)
-              ])
+              amount: new FormControl(ingredient.amount, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
             })
           );
         });
@@ -89,7 +79,7 @@ export class RecipeEditComponent implements OnInit {
       name: new FormControl(recipeName, Validators.required),
       imagePath: new FormControl(recipeImagePath, Validators.required),
       description: new FormControl(recipeDescription, Validators.required),
-      ingredients: recipeIngredients
+      ingredients: recipeIngredients,
     });
   }
 }

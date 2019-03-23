@@ -8,7 +8,7 @@ import { ShoppingListService } from './../../shopping-list/services/shopping-lis
 
 @Injectable()
 export class RecipeService {
-  public recipesChanged = new Subject<Recipe[]>();
+  recipesChanged = new Subject<Recipe[]>();
   private recipes: Recipe[] = [
     new Recipe(
       'Recipe 1',
@@ -21,40 +21,40 @@ export class RecipeService {
       'Recipe 2 description',
       'http://pluspng.com/img-png/burger-png-burger-png-picture-png-image-2008.png',
       [new Ingredient('Buns', 2), new Ingredient('Meat', 1)]
-    )
+    ),
   ];
 
   constructor(private shoppingListService: ShoppingListService) {}
 
-  public setRecipes(recipes: Recipe[]) {
+  setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
     this.recipesChanged.next(this.recipes);
   }
 
-  public getRecipes(): Recipe[] {
+  getRecipes(): Recipe[] {
     return this.recipes.slice();
   }
 
-  public getRecipe(id: number): Recipe {
+  getRecipe(id: number): Recipe {
     return this.recipes[id];
   }
 
-  public addRecipe(recipe: Recipe): void {
+  addRecipe(recipe: Recipe): void {
     this.recipes.push(recipe);
     this.recipesChanged.next(this.recipes.slice());
   }
 
-  public updateRecipe(index: number, newRecipe: Recipe): void {
+  updateRecipe(index: number, newRecipe: Recipe): void {
     this.recipes[index] = newRecipe;
     this.recipesChanged.next(this.recipes.slice());
   }
 
-  public deleteRecipe(index: number): void {
+  deleteRecipe(index: number): void {
     this.recipes.splice(index, 1);
     this.recipesChanged.next(this.recipes.slice());
   }
 
-  public addIngredientToShoppingList(ingredients: Ingredient[]): void {
+  addIngredientToShoppingList(ingredients: Ingredient[]): void {
     this.shoppingListService.addIngredients(ingredients);
   }
 }

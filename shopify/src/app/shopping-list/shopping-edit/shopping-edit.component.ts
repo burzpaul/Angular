@@ -9,11 +9,11 @@ import { ShoppingListService } from './../services/shopping-list.service';
 @Component({
   selector: 'app-shopping-edit',
   templateUrl: './shopping-edit.component.html',
-  styleUrls: ['./shopping-edit.component.css']
+  styleUrls: ['./shopping-edit.component.css'],
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
-  @ViewChild('f') public shoppingListForm: NgForm;
-  public editMode = false;
+  @ViewChild('f') shoppingListForm: NgForm;
+  editMode = false;
 
   private editedNumberIndex: number;
   private editedItem: Ingredient;
@@ -21,7 +21,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   constructor(private shoppingListService: ShoppingListService) {}
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.subscription = this.shoppingListService.startedEditing.subscribe((index: number) => {
       this.editedNumberIndex = index;
       this.editMode = true;
@@ -29,12 +29,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
       this.shoppingListForm.setValue({
         name: this.editedItem.name,
-        amount: this.editedItem.amount
+        amount: this.editedItem.amount,
       });
     });
   }
 
-  public onAddItem(form: NgForm): void {
+  onAddItem(form: NgForm): void {
     const value = form.value;
     const newIngredient = new Ingredient(value.name, value.amount);
     if (this.editMode) {
@@ -45,16 +45,16 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.resetForm();
   }
 
-  public onClear(): void {
+  onClear(): void {
     this.resetForm();
   }
 
-  public onDelete(): void {
+  onDelete(): void {
     this.resetForm();
     this.shoppingListService.deleteItem(this.editedNumberIndex);
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 

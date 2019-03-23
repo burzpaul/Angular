@@ -13,10 +13,7 @@ export class DataStorageService {
   constructor(private http: Http, private recipeSvc: RecipeService) {}
 
   storeRecipe(): Observable<Response> {
-    return this.http.put(
-      'https://shopify-test-api-d2acf.firebaseio.com/recipes.json',
-      this.recipeSvc.getRecipes()
-    );
+    return this.http.put('https://shopify-test-api-d2acf.firebaseio.com/recipes.json', this.recipeSvc.getRecipes());
   }
 
   getRecipes(): void {
