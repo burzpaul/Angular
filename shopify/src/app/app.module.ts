@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 //#region Modules
 import { AppRoutingModule } from './app-routing.module';
-import { RecipesModule } from './recipes/recipes.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 //#endregion
@@ -12,6 +11,7 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
 //#region Component
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
 //#endregion
 
 //#region Services
@@ -20,13 +20,12 @@ import { ShoppingListService } from './shopping-list/services/shopping-list.serv
 //#endregion
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, HomeComponent],
   imports: [
     HttpModule,
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    RecipesModule,
     ShoppingListModule,
   ],
   providers: [ShoppingListService, RecipeService],
