@@ -1,6 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Recipe } from './../../recipes/models/recipe.model';
@@ -10,21 +9,23 @@ import { RecipeService } from './../../recipes/services/recipe.service';
   providedIn: 'root',
 })
 export class DataStorageService {
-  constructor(private http: Http, private recipeSvc: RecipeService) {}
+  private firebaseUrl =
+    'https://shopify-test-api-d2acf.firebaseio.com/recipes.json';
 
-  storeRecipe(): Observable<Response> {
-    return this.http.put(
-      'https://shopify-test-api-d2acf.firebaseio.com/recipes.json',
-      this.recipeSvc.getRecipes()
-    );
+  constructor(
+    private httpClient: HttpClient,
+    private recipeSvc: RecipeService
+  ) {}
+
+  storeRecipe() {
+    return this.httpClient.put(this.firebaseUrl, this.recipeSvc.getRecipes());
   }
 
   getRecipes(): void {
-    this.http
-      .get('https://shopify-test-api-d2acf.firebaseio.com/recipes.json')
+    this.httpClient
+      .get<Recipe[]>(this.firebaseUrl)
       .pipe(
-        map((response: Response) => {
-          const recipes: Recipe[] = response.json();
+        map(recipes => {
           for (const recipe of recipes) {
             if (!recipe.ingredients) {
               recipe.ingredients = [];
@@ -33,7 +34,7 @@ export class DataStorageService {
           return recipes;
         })
       )
-      .subscribe((recipes: Recipe[]) => {
+      .subscribe(recipes => {
         this.recipeSvc.setRecipes(recipes);
       });
   }
