@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Ingredient } from './../../shared/models/ingredient.model';
+import { Ingredient } from '@shared/models/ingredient.model';
 
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const ADD_INGREDIENTS = 'ADD_INGREDIENTS';

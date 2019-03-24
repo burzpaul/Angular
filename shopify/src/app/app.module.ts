@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 
 //#region Modules
+import { CoreModule } from '@core/core.module';
+import { SharedModule } from '@shared/shared.module';
+import { ShoppingListModule } from '@shoppList/shopping-list.module';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
 //#endregion
 
 //#region Component
@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 //#endregion
 
 //#region Reducers
-import { shoppingListReducer } from './shopping-list/store/shopping-list.reducers';
+import { shoppingListReducer } from '@shoppList/store/shopping-list.reducers';
 //#endregion
 
 @NgModule({

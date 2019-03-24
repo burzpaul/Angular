@@ -1,5 +1,5 @@
-import { Recipe } from '../../recipes/models/recipe.model';
-import { Ingredient } from '../../shared/models/ingredient.model';
+import { Ingredient } from '@shared/models/ingredient.model';
+import { Recipe } from '@recipes/models/recipe.model';
 
 import { Subject } from 'rxjs';
 

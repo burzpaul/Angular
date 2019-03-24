@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 //#region Modules
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { AppRoutingModule } from './../app-routing.module';
 //#region
 
