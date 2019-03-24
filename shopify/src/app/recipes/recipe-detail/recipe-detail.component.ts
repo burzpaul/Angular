@@ -29,7 +29,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onAddToShoppingList(): void {
-    this.recipeService.addIngredientToShoppingList(this.recipe.ingredients);
+    // this.recipeService.addIngredientToShoppingList(this.recipe.ingredients);
   }
 
   onEditRecipe(): void {

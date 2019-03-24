@@ -12,13 +12,12 @@ import { HomeComponent } from './home/home.component';
 
 //#region Servcices
 import { RecipeService } from './services/recipe.service';
-import { ShoppingListService } from './services/shopping-list.service';
 //#endregion
 
 @NgModule({
   declarations: [HeaderComponent, HomeComponent],
   imports: [SharedModule, AppRoutingModule],
-  providers: [ShoppingListService, RecipeService],
+  providers: [RecipeService],
   exports: [AppRoutingModule, HeaderComponent],
 })
 export class CoreModule {}

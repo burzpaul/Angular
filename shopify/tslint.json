@@ -5,6 +5,7 @@
     "object-literal-sort-keys": false,
     "no-submodule-imports": false,
     "ordered-imports": true,
+    "max-classes-per-file": false,
     "max-line-length": {
       "options": [120]
     },

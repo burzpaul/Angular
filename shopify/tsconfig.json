@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "noUnusedLocals": true,
+    "downlevelIteration": true,
     "noUnusedParameters": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
