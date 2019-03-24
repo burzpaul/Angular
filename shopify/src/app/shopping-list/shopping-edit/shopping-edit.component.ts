@@ -9,7 +9,7 @@ import { Ingredient } from '@shared/models/ingredient.model';
 
 //#region Store
 import * as ShoppingListActions from '@shoppList/store/shopping-list.actions';
-import * as fromShoppingList from '@shoppList/store/shopping-list.reducers';
+import * as fromApp from '@store/app.reducers';
 //#endregion
 
 @Component({
@@ -23,7 +23,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private store: Store<fromShoppingList.AppState>) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
     this.subscription = this.store.select('shoppingList').subscribe(data => {
