@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 //#endregion
 
 //#region Reducers
-import { shoppingListReducer } from '@shoppList/store/shopping-list.reducers';
+import { reducers } from '@store/app.reducers';
 //#endregion
 
 @NgModule({
@@ -27,9 +27,7 @@ import { shoppingListReducer } from '@shoppList/store/shopping-list.reducers';
     SharedModule,
     CoreModule,
     ShoppingListModule,
-    StoreModule.forRoot({
-      shoppingList: shoppingListReducer,
-    }),
+    StoreModule.forRoot(reducers),
   ],
   bootstrap: [AppComponent],
 })
