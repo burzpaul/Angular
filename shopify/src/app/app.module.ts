@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 
 //#region Modules
+import { AuthModule } from '@auth/auth.module';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
 import { ShoppingListModule } from '@shoppList/shopping-list.module';
@@ -26,6 +27,7 @@ import { reducers } from '@store/app.reducers';
     AppRoutingModule,
     SharedModule,
     CoreModule,
+    AuthModule,
     ShoppingListModule,
     StoreModule.forRoot(reducers),
   ],
