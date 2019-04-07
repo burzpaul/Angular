@@ -5,13 +5,16 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { switchMap, take } from 'rxjs/operators';
 
-import { AuthService } from '@auth/auth.service';
+import * as fromApp from '@app/store/app.reducers';
+import * as fromAuth from '@auth/store/auth.reducers';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   intercept(
     // tslint:disable-next-line: no-any
@@ -19,9 +22,14 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
     // tslint:disable-next-line: no-any
   ): Observable<HttpEvent<any>> {
-    const copiedReq = req.clone({
-      params: req.params.set('auth', this.authService.getToken()),
-    });
-    return next.handle(copiedReq);
+    return this.store.select('auth').pipe(
+      take(1),
+      switchMap((authState: fromAuth.State) => {
+        const copiedReq = req.clone({
+          params: req.params.set('auth', authState.token),
+        });
+        return next.handle(copiedReq);
+      })
+    );
   }
 }

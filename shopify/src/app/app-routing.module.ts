@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from '@auth/auth-guard.service';
+import { AuthGuard } from '@auth/guards/auth-guard.service';
 import { HomeComponent } from '@core/home/home.component';
 import { ShoppingListComponent } from '@shoppList/shopping-list.component';
 

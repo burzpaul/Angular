@@ -16,7 +16,12 @@ import { AppComponent } from './app.component';
 //#endregion
 
 //#region Reducers
+import { EffectsModule } from '@ngrx/effects';
 import { reducers } from '@store/app.reducers';
+//#endregion
+
+//#region Effects
+import { AuthEffects } from './auth/store/auth.effect';
 //#endregion
 
 @NgModule({
@@ -30,6 +35,7 @@ import { reducers } from '@store/app.reducers';
     AuthModule,
     ShoppingListModule,
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AuthEffects]),
   ],
   bootstrap: [AppComponent],
 })
