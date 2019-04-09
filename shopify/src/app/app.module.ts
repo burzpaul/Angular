@@ -1,7 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { environment } from '@env/environment.prod';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 //#region Modules
 import { AuthModule } from '@auth/auth.module';
@@ -36,6 +39,8 @@ import { AuthEffects } from './auth/store/auth.effect';
     ShoppingListModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects]),
+    StoreRouterConnectingModule,
+    !environment ? StoreDevtoolsModule.instrument() : [],
   ],
   bootstrap: [AppComponent],
 })
