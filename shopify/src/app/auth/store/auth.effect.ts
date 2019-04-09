@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as firebase from 'firebase';
 import { from } from 'rxjs';
-import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
 
 import * as AuthActions from '@auth/store/auth.actions';
 
@@ -46,6 +46,12 @@ export class AuthEffects {
         { type: AuthActions.SET_TOKEN, payload: token },
       ];
     })
+  );
+
+  @Effect({ dispatch: false })
+  authLogOut = this.actions$.pipe(
+    ofType(AuthActions.LOGOUT),
+    tap(() => this.router.navigate(['/']))
   );
 
   constructor(private actions$: Actions, private router: Router) {}

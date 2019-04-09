@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 
 import { RecipeService } from '@core/services/recipe.service';
 import { Recipe } from '@recipes/models/recipe.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class DataStorageService {
     private recipeSvc: RecipeService
   ) {}
 
-  storeRecipe() {
+  storeRecipe(): Observable<{}> {
     return this.httpClient.put(this.firebaseUrl, this.recipeSvc.getRecipes());
   }
 
