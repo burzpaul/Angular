@@ -14,17 +14,10 @@ export class AuthEffects {
     ofType(AuthActions.TRY_SIGNUP),
     map((action: AuthActions.TrySignUp) => action.payload),
     switchMap((authData: { userName: string; password: string }) =>
-      from(
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(authData.userName, authData.password)
-      )
+      from(firebase.auth().createUserWithEmailAndPassword(authData.userName, authData.password))
     ),
     switchMap(() => from(firebase.auth().currentUser.getIdToken())),
-    mergeMap((token: string) => [
-      { type: AuthActions.SIGNUP },
-      { type: AuthActions.SET_TOKEN, payload: token },
-    ])
+    mergeMap((token: string) => [{ type: AuthActions.SIGNUP }, { type: AuthActions.SET_TOKEN, payload: token }])
   );
 
   @Effect()
@@ -32,19 +25,12 @@ export class AuthEffects {
     ofType(AuthActions.TRY_SIGNIN),
     map((action: AuthActions.TrySignUp) => action.payload),
     switchMap((authData: { userName: string; password: string }) =>
-      from(
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(authData.userName, authData.password)
-      )
+      from(firebase.auth().signInWithEmailAndPassword(authData.userName, authData.password))
     ),
     switchMap(() => from(firebase.auth().currentUser.getIdToken())),
     mergeMap((token: string) => {
       this.router.navigate(['/']);
-      return [
-        { type: AuthActions.SIGNIN },
-        { type: AuthActions.SET_TOKEN, payload: token },
-      ];
+      return [{ type: AuthActions.SIGNIN }, { type: AuthActions.SET_TOKEN, payload: token }];
     })
   );
 

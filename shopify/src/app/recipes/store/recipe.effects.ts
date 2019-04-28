@@ -17,11 +17,11 @@ export class RecipeEffects {
       return this.httpClient.get<Recipe[]>(this.firebaseUrl);
     }),
     map((recipes) => {
-      // for (const recipe of recipes) {
-      //   if (!recipe.ingredients) {
-      //     recipe.ingredients = [];
-      //   }
-      // }
+      for (const recipe of recipes) {
+        if (!recipe.ingredients) {
+          recipe.ingredients = [];
+        }
+      }
       return {
         type: RecipeActions.SET_RECIPES,
         payload: recipes
