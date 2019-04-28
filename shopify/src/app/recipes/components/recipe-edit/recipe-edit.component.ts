@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
@@ -29,6 +29,10 @@ export class RecipeEditComponent implements OnInit {
       this.editMode = params.id != null;
       this.initForm();
     });
+  }
+
+  get getFormData(): AbstractControl {
+    return this.recipeForm.get('ingredients');
   }
 
   onAddIngredient(): void {
