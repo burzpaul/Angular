@@ -15,11 +15,6 @@
     "no-submodule-imports": false,
     "ordered-imports": true,
     "max-classes-per-file": false,
-    "max-line-length": {
-      "options": [
-        120
-      ]
-    },
     "no-bitwise": true,
     "no-consecutive-blank-lines": false,
     "no-console": {
@@ -119,10 +114,6 @@
       ]
     ],
     "class-name": true,
-    "curly": [
-      true,
-      "ignore-same-line"
-    ],
     "deprecation": true,
     "forin": true,
     "interface-name": [
@@ -165,11 +156,6 @@
     ],
     "prefer-const": true,
     "radix": true,
-    "semicolon": [
-      true,
-      "always",
-      "ignore-bound-class-methods"
-    ],
     "switch-default": true,
     "trailing-comma": false,
     "triple-equals": [
