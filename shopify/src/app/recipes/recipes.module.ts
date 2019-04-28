@@ -9,13 +9,16 @@ import { SharedModule } from '@shared/shared.module';
 import { RecipesRotingModule } from './recipes-routing.module';
 //#endregion
 
+//#region Pages
+import { RecipesComponent } from './pages/recipes/recipes.component';
+//#endregion
+
 //#region Components
-import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
-import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
-import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
-import { RecipeListComponent } from './recipe-list/recipe-list.component';
-import { RecipesComponent } from './recipes.component';
+import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
+import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
+import { RecipeInfoComponent } from './components/recipe-info/recipe-info.component';
+import { RecipeItemComponent } from './components/recipe-item/recipe-item.component';
+import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 //#endregion
 
 //#region Store

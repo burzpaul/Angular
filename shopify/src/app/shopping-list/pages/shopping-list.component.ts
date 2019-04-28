@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Ingredient } from '@shared/models/ingredient.model';
 
 import * as fromApp from '@store/app.reducers';
-import * as ShoppingListActions from '@app/store/shopping-list.actions';
+import * as ShoppingListActions from '@shoppList/store/shopping-list.actions';
 
 @Component({
   selector: 'app-shopping-list',
