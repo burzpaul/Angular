@@ -9,6 +9,7 @@ import * as RecipeActions from '@recipes/store/recipe.actions';
 
 @Component({
   selector: 'app-header',
+  styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {

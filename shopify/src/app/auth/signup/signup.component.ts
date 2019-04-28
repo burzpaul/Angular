@@ -8,15 +8,13 @@ import * as AuthActions from '@auth/store/auth.actions';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css'],
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
   constructor(private store: Store<fromApp.AppState>) {}
   onSignup(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    this.store.dispatch(
-      new AuthActions.TrySignUp({ userName: email, password })
-    );
+    this.store.dispatch(new AuthActions.TrySignUp({ userName: email, password }));
   }
 }

@@ -9,7 +9,7 @@ import * as fromRecipe from '@recipes/store/recipe.reducers';
 
 @Component({
   selector: 'app-recipe-list',
-  styleUrls: ['./recipe-list.component.css'],
+  styleUrls: ['./recipe-list.component.scss'],
   templateUrl: './recipe-list.component.html'
 })
 export class RecipeListComponent implements OnInit {

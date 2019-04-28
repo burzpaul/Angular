@@ -10,21 +10,21 @@ const appRoutes: Routes = [
   {
     path: 'recipes',
     loadChildren: './recipes/recipes.module#RecipesModule',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'shopping-list',
     component: ShoppingListComponent,
-    canActivate: [AuthGuard],
-  },
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes, {
-      preloadingStrategy: PreloadAllModules,
-    }),
+      preloadingStrategy: PreloadAllModules
+    })
   ],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

@@ -8,7 +8,7 @@ import * as AuthActions from '@auth/store/auth.actions';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css'],
+  styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent {
   constructor(private store: Store<fromApp.AppState>) {}
@@ -16,8 +16,6 @@ export class SigninComponent {
   onSignin(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    this.store.dispatch(
-      new AuthActions.TrySignIn({ userName: email, password })
-    );
+    this.store.dispatch(new AuthActions.TrySignIn({ userName: email, password }));
   }
 }

@@ -40,8 +40,8 @@ import { AuthEffects } from './auth/store/auth.effect';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule,
-    !environment ? StoreDevtoolsModule.instrument() : [],
+    !environment ? StoreDevtoolsModule.instrument() : []
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

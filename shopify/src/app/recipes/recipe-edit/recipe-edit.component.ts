@@ -14,7 +14,7 @@ import * as fromRecipe from '@recipes/store/recipe.reducers';
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
-  styleUrls: ['./recipe-edit.component.css']
+  styleUrls: ['./recipe-edit.component.scss']
 })
 export class RecipeEditComponent implements OnInit {
   recipeForm: FormGroup;

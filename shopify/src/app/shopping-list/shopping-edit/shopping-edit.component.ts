@@ -15,7 +15,7 @@ import * as fromApp from '@store/app.reducers';
 @Component({
   selector: 'app-shopping-edit',
   templateUrl: './shopping-edit.component.html',
-  styleUrls: ['./shopping-edit.component.css'],
+  styleUrls: ['./shopping-edit.component.scss']
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
   @ViewChild('f') shoppingListForm: NgForm;
@@ -26,13 +26,13 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
-    this.subscription = this.store.select('shoppingList').subscribe(data => {
+    this.subscription = this.store.select('shoppingList').subscribe((data) => {
       if (data.editedIngredientIndex > -1) {
         this.editMode = true;
 
         this.shoppingListForm.setValue({
           name: data.editedIngredient.name,
-          amount: data.editedIngredient.amount,
+          amount: data.editedIngredient.amount
         });
       } else {
         this.editMode = false;
@@ -44,9 +44,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     const value = form.value;
     const newIngredient = new Ingredient(value.name, value.amount);
     if (this.editMode) {
-      this.store.dispatch(
-        new ShoppingListActions.UpdateIngredient(newIngredient)
-      );
+      this.store.dispatch(new ShoppingListActions.UpdateIngredient(newIngredient));
     } else {
       this.store.dispatch(new ShoppingListActions.AddIngredient(newIngredient));
     }

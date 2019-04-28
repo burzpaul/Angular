@@ -1,9 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "noUnusedLocals": true,
-    "downlevelIteration": true,
-    "noUnusedParameters": true,
     "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
@@ -12,18 +9,19 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "importHelpers": true,
     "target": "es5",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "@app/*" : ["app/*"],
-      "@env/*" : ["environments/*"],
-      "@auth/*" : ["app/auth/*"],
-      "@core/*" : ["app/core/*"],
-      "@shoppList/*" : ["app/shopping-list/*"],
-      "@recipes/*" : ["app/recipes/*"],
-      "@store/*" : ["app/store/*"],
-      "@shared/*": ["app/shared/*"],
+      "@app/*": ["app/*"],
+      "@env/*": ["environments/*"],
+      "@auth/*": ["app/auth/*"],
+      "@core/*": ["app/core/*"],
+      "@shoppList/*": ["app/shopping-list/*"],
+      "@recipes/*": ["app/recipes/*"],
+      "@store/*": ["app/store/*"],
+      "@shared/*": ["app/shared/*"]
     }
   }
 }
