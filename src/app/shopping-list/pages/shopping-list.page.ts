@@ -4,8 +4,9 @@ import { Observable } from 'rxjs';
 
 import { Ingredient } from '@shared/models/ingredient.model';
 
-import * as fromApp from '@store/app.reducers';
+import { AppState } from '@app/store/app.state';
 import * as ShoppingListActions from '@shoppList/store/shopping-list.actions';
+import { shoppingListQuery } from '../store/shopping-list.selectors';
 
 @Component({
   selector: 'app-shopping-list',
@@ -13,14 +14,12 @@ import * as ShoppingListActions from '@shoppList/store/shopping-list.actions';
   styleUrls: ['./shopping-list.page.scss']
 })
 export class ShoppingListPageComponent implements OnInit {
-  shoppingListState: Observable<{
-    ingredients: Ingredient[];
-  }>;
+  ingredients$: Observable<Ingredient[]>;
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.shoppingListState = this.store.select('shoppingList');
+    this.ingredients$ = this.store.select(shoppingListQuery.selectIngredient);
   }
   onEditItem(index: number) {
     this.store.dispatch(new ShoppingListActions.StartEdit(index));
