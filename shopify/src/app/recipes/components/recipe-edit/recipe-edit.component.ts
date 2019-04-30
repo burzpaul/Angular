@@ -23,7 +23,7 @@ export class RecipeEditComponent implements OnInit {
   private editMode = false;
   constructor(private router: Router, private route: ActivatedRoute, private store: Store<fromRecipe.FeatureState>) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.recipeId = +params.id;
       this.editMode = params.id != null;
