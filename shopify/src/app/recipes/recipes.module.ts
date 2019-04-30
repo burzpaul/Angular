@@ -10,7 +10,7 @@ import { RecipesRotingModule } from './recipes-routing.module';
 //#endregion
 
 //#region Pages
-import { RecipesComponent } from './pages/recipes/recipes.component';
+import { RecipesPageComponent } from './pages/recipes/recipes.page';
 //#endregion
 
 //#region Components
@@ -28,7 +28,7 @@ import { recipeReducer } from './store/recipe.reducers';
 
 @NgModule({
   declarations: [
-    RecipesComponent,
+    RecipesPageComponent,
     RecipeInfoComponent,
     RecipeListComponent,
     RecipeEditComponent,

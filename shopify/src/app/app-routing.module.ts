@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from '@auth/guards/auth-guard.service';
-import { HomeComponent } from '@app/core/pages/home/home.component';
-import { ShoppingListComponent } from '@app/shopping-list/pages/shopping-list.component';
+import { HomePageComponent } from '@app/core/pages/home/home.page';
+import { ShoppingListPageComponent } from '@app/shopping-list/pages/shopping-list.page';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomePageComponent, canActivate: [AuthGuard] },
   {
     path: 'recipes',
     loadChildren: './recipes/recipes.module#RecipesModule',
@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'shopping-list',
-    component: ShoppingListComponent,
+    component: ShoppingListPageComponent,
     canActivate: [AuthGuard]
   }
 ];

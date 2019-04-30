@@ -2,7 +2,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 //#region Pages
-import { HomeComponent } from '@core/pages/home/home.component';
+import { HomePageComponent } from '@app/core/pages/home/home.page';
 //#endregion
 
 //#region Components
@@ -20,7 +20,7 @@ import { AppRoutingModule } from '@app/app-routing.module';
 //#endregion
 
 @NgModule({
-  declarations: [HeaderComponent, HomeComponent],
+  declarations: [HeaderComponent, HomePageComponent],
   imports: [SharedModule, AppRoutingModule],
   exports: [AppRoutingModule, HeaderComponent],
   providers: [

@@ -9,10 +9,10 @@ import * as ShoppingListActions from '@shoppList/store/shopping-list.actions';
 
 @Component({
   selector: 'app-shopping-list',
-  templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.scss']
+  templateUrl: './shopping-list.page.html',
+  styleUrls: ['./shopping-list.page.scss']
 })
-export class ShoppingListComponent implements OnInit {
+export class ShoppingListPageComponent implements OnInit {
   shoppingListState: Observable<{
     ingredients: Ingredient[];
   }>;

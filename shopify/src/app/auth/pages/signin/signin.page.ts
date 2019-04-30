@@ -6,15 +6,16 @@ import * as fromApp from '@app/store/app.reducers';
 import * as AuthActions from '@auth/store/auth.actions';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  selector: 'app-signin',
+  templateUrl: './signin.page.html',
+  styleUrls: ['./signin.page.scss']
 })
-export class SignupComponent {
+export class SigninPageComponent {
   constructor(private store: Store<fromApp.AppState>) {}
-  onSignup(form: NgForm) {
+
+  onSignin(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    this.store.dispatch(new AuthActions.TrySignUp({ userName: email, password }));
+    this.store.dispatch(new AuthActions.TrySignIn({ userName: email, password }));
   }
 }
