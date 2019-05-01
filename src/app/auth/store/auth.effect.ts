@@ -11,18 +11,21 @@ import * as AuthActions from '@auth/store/auth.actions';
 export class AuthEffects {
   @Effect()
   authSignUp = this.actions$.pipe(
-    ofType(AuthActions.TRY_SIGNUP),
+    ofType(AuthActions.AuthActionsTypes.TRY_SIGNUP),
     map((action: AuthActions.TrySignUp) => action.payload),
     switchMap((authData: { userName: string; password: string }) =>
       from(firebase.auth().createUserWithEmailAndPassword(authData.userName, authData.password))
     ),
     switchMap(() => from(firebase.auth().currentUser.getIdToken())),
-    mergeMap((token: string) => [{ type: AuthActions.SIGNUP }, { type: AuthActions.SET_TOKEN, payload: token }])
+    mergeMap((token: string) => [
+      { type: AuthActions.AuthActionsTypes.SIGNUP },
+      { type: AuthActions.AuthActionsTypes.SET_TOKEN, payload: token }
+    ])
   );
 
   @Effect()
   authSignIn = this.actions$.pipe(
-    ofType(AuthActions.TRY_SIGNIN),
+    ofType(AuthActions.AuthActionsTypes.TRY_SIGNIN),
     map((action: AuthActions.TrySignUp) => action.payload),
     switchMap((authData: { userName: string; password: string }) =>
       from(firebase.auth().signInWithEmailAndPassword(authData.userName, authData.password))
@@ -30,13 +33,16 @@ export class AuthEffects {
     switchMap(() => from(firebase.auth().currentUser.getIdToken())),
     mergeMap((token: string) => {
       this.router.navigate(['/']);
-      return [{ type: AuthActions.SIGNIN }, { type: AuthActions.SET_TOKEN, payload: token }];
+      return [
+        { type: AuthActions.AuthActionsTypes.SIGNIN },
+        { type: AuthActions.AuthActionsTypes.SET_TOKEN, payload: token }
+      ];
     })
   );
 
   @Effect({ dispatch: false })
   authLogOut = this.actions$.pipe(
-    ofType(AuthActions.LOGOUT),
+    ofType(AuthActions.AuthActionsTypes.LOGOUT),
     tap(() => this.router.navigate(['/']))
   );
 

@@ -2,10 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+//#region State
 import { AppState } from '@app/store/app.state';
+import { AuthState } from '@auth/store/auth.state';
+//#endregion
+
+//#region Actions
 import * as AuthActions from '@auth/store/auth.actions';
-import * as fromAuth from '@auth/store/auth.reducers';
 import * as RecipeActions from '@recipes/store/recipe.actions';
+//#endregion
+
+
+//#region Selectors
+import { selectAuth } from '@app/store/app.selectors';
+//#endregion
 
 @Component({
   selector: 'app-header',
@@ -13,12 +23,12 @@ import * as RecipeActions from '@recipes/store/recipe.actions';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
-  authState: Observable<fromAuth.State>;
+  authState: Observable<AuthState>;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.authState = this.store.select('auth');
+    this.authState = this.store.select(selectAuth);
   }
 
   onSaveData(): void {

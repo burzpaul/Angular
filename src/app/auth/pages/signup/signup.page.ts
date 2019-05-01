@@ -2,8 +2,13 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
+//#region State
 import { AppState } from '@app/store/app.state';
+//#endregion
+
+//#region Actions
 import * as AuthActions from '@auth/store/auth.actions';
+//#endregion
 
 @Component({
   selector: 'app-signup',

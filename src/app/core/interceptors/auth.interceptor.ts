@@ -1,16 +1,24 @@
 import {
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
+    HttpEvent,
+    HttpHandler,
+    HttpInterceptor,
+    HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 
+
+
+//#region State
 import { AppState } from '@app/store/app.state';
-import * as fromAuth from '@auth/store/auth.reducers';
+import { AuthState } from '@auth/store/auth.state'
+//#endregion
+
+//#region Selectors
+import { selectAuth } from '@app/store/app.selectors';
+//#endregion
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -22,9 +30,9 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
     // tslint:disable-next-line: no-any
   ): Observable<HttpEvent<any>> {
-    return this.store.select('auth').pipe(
+    return this.store.select(selectAuth).pipe(
       take(1),
-      switchMap((authState: fromAuth.State) => {
+      switchMap((authState: AuthState) => {
         const copiedReq = req.clone({
           params: req.params.set('auth', authState.token),
         });

@@ -1,6 +1,6 @@
 import { Ingredient } from '@shared/models/ingredient.model';
 import { ShoppingListActions, ShoppingListActionTypes } from '@shoppList/store/shopping-list.actions';
-import { initialState, ShoppingListState } from '@shoppList/store/shopping-list.state';
+import { ShoppingListState, initialState } from '@shoppList/store/shopping-list.state';
 
 export function shoppingListReducer(state = initialState, action: ShoppingListActions): ShoppingListState {
   switch (action.type) {
