@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as fromApp from '@app/store/app.reducers';
+import { AppState } from '@app/store/app.state';
 import * as RecipeActions from '@recipes/store/recipe.actions';
 
 @Component({
@@ -10,7 +10,7 @@ import * as RecipeActions from '@recipes/store/recipe.actions';
   styleUrls: ['./recipes.page.scss']
 })
 export class RecipesPageComponent implements OnInit {
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(new RecipeActions.FetchRecipes());

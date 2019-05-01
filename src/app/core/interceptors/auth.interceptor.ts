@@ -9,12 +9,12 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 
-import * as fromApp from '@app/store/app.reducers';
+import { AppState } from '@app/store/app.state';
 import * as fromAuth from '@auth/store/auth.reducers';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<AppState>) {}
 
   intercept(
     // tslint:disable-next-line: no-any

@@ -6,14 +6,14 @@ import { map, take, tap } from 'rxjs/operators';
 
 import { AuthModule } from '@auth/auth.module';
 
-import * as fromApp from '@app/store/app.reducers';
+import { AppState } from '@app/store/app.state';
 import * as fromAuth from '@auth/store/auth.reducers';
 
 @Injectable({
   providedIn: AuthModule
 })
 export class AuthGuard implements CanActivate {
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<AppState>) {}
 
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
     return this.store.select('auth').pipe(

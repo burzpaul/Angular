@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
-import * as fromApp from '@app/store/app.reducers';
+import { AppState } from '@app/store/app.state';
 import * as AuthActions from '@auth/store/auth.actions';
 
 @Component({
@@ -11,7 +11,7 @@ import * as AuthActions from '@auth/store/auth.actions';
   styleUrls: ['./signup.page.scss']
 })
 export class SignupPageComponent {
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<AppState>) {}
   onSignup(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;

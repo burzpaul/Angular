@@ -1,9 +1,9 @@
 import { Ingredient } from '@app/shared/models/ingredient.model';
 
 export interface ShoppingListState {
-  ingredients: Ingredient[];
-  editedIngredient: Ingredient;
-  editedIngredientIndex: number;
+  readonly ingredients: Ingredient[];
+  readonly editedIngredient: Ingredient;
+  readonly editedIngredientIndex: number;
 }
 
 export const initialState: ShoppingListState = {

@@ -7,9 +7,21 @@ import { Subscription } from 'rxjs';
 import { Ingredient } from '@shared/models/ingredient.model';
 //#endregion
 
-//#region Store
-import * as ShoppingListActions from '@shoppList/store/shopping-list.actions';
-import * as fromApp from '@store/app.reducers';
+//#region State
+import { AppState } from '@app/store/app.state';
+//#endregion
+
+//#region Actions
+import {
+  UpdateIngredient,
+  AddIngredient,
+  DeleteIngredient,
+  StopEdit
+} from '@app/shopping-list/store/shopping-list.actions';
+//#endregion
+
+//#region Selectors
+import { selectShoppingList } from '@app/store/app.selectors';
 //#endregion
 
 @Component({
@@ -23,10 +35,10 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.subscription = this.store.select('shoppingList').subscribe((data) => {
+    this.subscription = this.store.select(selectShoppingList).subscribe((data) => {
       if (data.editedIngredientIndex > -1) {
         this.editMode = true;
 
@@ -44,9 +56,9 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     const value = form.value;
     const newIngredient = new Ingredient(value.name, value.amount);
     if (this.editMode) {
-      this.store.dispatch(new ShoppingListActions.UpdateIngredient(newIngredient));
+      this.store.dispatch(new UpdateIngredient(newIngredient));
     } else {
-      this.store.dispatch(new ShoppingListActions.AddIngredient(newIngredient));
+      this.store.dispatch(new AddIngredient(newIngredient));
     }
     this.resetForm();
   }
@@ -57,11 +69,11 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   onDelete(): void {
     this.resetForm();
-    this.store.dispatch(new ShoppingListActions.DeleteIngredient());
+    this.store.dispatch(new DeleteIngredient());
   }
 
   ngOnDestroy(): void {
-    this.store.dispatch(new ShoppingListActions.StopEdit());
+    this.store.dispatch(new StopEdit());
     this.subscription.unsubscribe();
   }
 
