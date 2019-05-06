@@ -2,44 +2,44 @@ import { Action } from '@ngrx/store';
 import { Ingredient } from '@shared/models/ingredient.model';
 
 export enum ShoppingListActionTypes {
-  ADD_INGREDIENT = '[ShoppingList] ADD_INGREDIENT',
-  ADD_INGREDIENTS = '[ShoppingList] ADD_INGREDIENTS',
-  UPDATE_INGREDIENT = '[ShoppingList] UPDATE_INGREDIENT',
-  DELETE_INGREDIENT = '[ShoppingList] DELETE_INGREDIENT',
-  START_EDIT = '[ShoppingList] START_EDIT',
-  STOP_EDIT = '[ShoppingList] STOP_EDIT'
+  AddIngredient = '[ShoppingList] AddIngredient',
+  AddIngredients = '[ShoppingList] AddIngredients',
+  UpdateIngredient = '[ShoppingList] UpdateIngredient',
+  DeleteIngredient = '[ShoppingList] DeleteIngredient',
+  StartEdit = '[ShoppingList] StartEdit',
+  StopEdit = '[ShoppingList] StopEdit'
 }
 
 export class AddIngredient implements Action {
-  readonly type = ShoppingListActionTypes.ADD_INGREDIENT;
+  readonly type = ShoppingListActionTypes.AddIngredient;
 
   constructor(public payload: Ingredient) {}
 }
 
 export class AddIngredients implements Action {
-  readonly type = ShoppingListActionTypes.ADD_INGREDIENTS;
+  readonly type = ShoppingListActionTypes.AddIngredients;
 
   constructor(public payload: Ingredient[]) {}
 }
 
 export class UpdateIngredient implements Action {
-  readonly type = ShoppingListActionTypes.UPDATE_INGREDIENT;
+  readonly type = ShoppingListActionTypes.UpdateIngredient;
 
   constructor(public payload: Ingredient) {}
 }
 
 export class DeleteIngredient implements Action {
-  readonly type = ShoppingListActionTypes.DELETE_INGREDIENT;
+  readonly type = ShoppingListActionTypes.DeleteIngredient;
 }
 
 export class StartEdit implements Action {
-  readonly type = ShoppingListActionTypes.START_EDIT;
+  readonly type = ShoppingListActionTypes.StartEdit;
 
   constructor(public payload: number) {}
 }
 
 export class StopEdit implements Action {
-  readonly type = ShoppingListActionTypes.STOP_EDIT;
+  readonly type = ShoppingListActionTypes.StopEdit;
 }
 
 export type ShoppingListActions =

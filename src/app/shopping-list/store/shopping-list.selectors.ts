@@ -1,10 +1,12 @@
 import { MemoizedSelector, createSelector } from '@ngrx/store';
 
+import { AppState } from '@app/store/app.state';
 import { selectShoppingList } from '@app/store/app.selectors';
-import { ShoppingListState } from '@shoppList/store/shopping-list.state';
+
+import { ShoppingList } from '@shoppList/store/shopping-list.state';
 import { Ingredient } from '@app/shared/models/ingredient.model';
 
-export const selectIngredients: MemoizedSelector<object, Ingredient[]> = createSelector(
+export const selectIngredients: MemoizedSelector<AppState, Ingredient[]> = createSelector(
   selectShoppingList,
-  (state: ShoppingListState) => state.ingredients
+  (state: ShoppingList) => state.ingredients
 );

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Ingredient } from '@shared/models/ingredient.model';
 
 //#region State
-import { AppState } from '@app/store/app.state';
+import { ShoppingListState } from '@shoppList/store/shopping-list.state';
 //#endregion
 
 //#region Actions
@@ -24,7 +24,7 @@ import { selectIngredients } from '@shoppList/store/shopping-list.selectors';
 export class ShoppingListPageComponent implements OnInit {
   ingredients$: Observable<Ingredient[]>;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<ShoppingListState>) {}
 
   ngOnInit(): void {
     this.ingredients$ = this.store.select(selectIngredients);

@@ -1,7 +1,7 @@
 import { Auth } from '@auth/store/auth.state';
-import { ShoppingListState } from '@app/shopping-list/store/shopping-list.state';
+import { ShoppingList } from '@app/shopping-list/store/shopping-list.state';
 
 export interface AppState {
-  readonly shoppingList: ShoppingListState;
-  readonly auth: Auth;
+    readonly auth: Auth;
+    readonly shoppingList: ShoppingList;
 }
