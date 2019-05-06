@@ -3,8 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-//#region Store
-import * as fromRecipe from '@recipes/store/recipe.reducers';
+import { Recipe } from '@recipes/models/recipe.model';
+
+//#region State
+import { AppState } from '@app/store/app.state';
+//#endregion
+
+//#region Selectors
+import { selectRecipeState, selectAllRecipes } from '@app/recipes/store/recipe.selectors';
 //#endregion
 
 @Component({
@@ -13,12 +19,13 @@ import * as fromRecipe from '@recipes/store/recipe.reducers';
   templateUrl: './recipe-list.component.html'
 })
 export class RecipeListComponent implements OnInit {
-  recipeState: Observable<fromRecipe.State>;
+  recipes$: Observable<Recipe[]>;
 
-  constructor(private router: Router, private route: ActivatedRoute, private store: Store<fromRecipe.FeatureState>) {}
+  constructor(private router: Router, private route: ActivatedRoute, private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.recipeState = this.store.select('recipes');
+    debugger;
+    this.recipes$ = this.store.select(selectAllRecipes);
   }
 
   onNewRecipe(): void {

@@ -1,3 +1,4 @@
+import { selectRecipeState } from './recipe.selectors';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
@@ -5,14 +6,16 @@ import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 
 import { Recipe } from '@recipes/models/recipe.model';
+
+import { AppState } from '@app/store/app.state';
+
 import * as RecipeActions from '@recipes/store/recipe.actions';
-import * as fromRecipe from '@recipes/store/recipe.reducers';
 
 @Injectable()
 export class RecipeEffects {
   @Effect()
-  recipeFetch = this.actions$.pipe(
-    ofType(RecipeActions.FETCH_RECIPES),
+  recipeFetch$ = this.actions$.pipe(
+    ofType(RecipeActions.RecipeActionTypes.FetchRecipes),
     switchMap(() => {
       return this.httpClient.get<Recipe[]>(this.firebaseUrl);
     }),
@@ -23,26 +26,22 @@ export class RecipeEffects {
         }
       }
       return {
-        type: RecipeActions.SET_RECIPES,
-        payload: recipes
+        type: RecipeActions.RecipeActionTypes.SetRecipes,
+        payload: { recipes }
       };
     })
   );
 
   @Effect({ dispatch: false })
-  recipeStore = this.actions$.pipe(
-    ofType(RecipeActions.STORE_RECIPES),
-    withLatestFrom(this.store.select('recipes')),
+  recipeStore$ = this.actions$.pipe(
+    ofType(RecipeActions.RecipeActionTypes.StoreRecipes),
+    withLatestFrom(this.store.select(selectRecipeState)),
     switchMap(([, state]) => {
-      return this.httpClient.put(this.firebaseUrl, state.recipes);
+      return this.httpClient.put(this.firebaseUrl, state.entities);
     })
   );
 
   private firebaseUrl = 'https://shopify-test-api-d2acf.firebaseio.com/recipes.json';
 
-  constructor(
-    private actions$: Actions,
-    private httpClient: HttpClient,
-    private store: Store<fromRecipe.FeatureState>
-  ) {}
+  constructor(private actions$: Actions, private httpClient: HttpClient, private store: Store<AppState>) {}
 }

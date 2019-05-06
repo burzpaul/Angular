@@ -6,9 +6,17 @@ import { take } from 'rxjs/operators';
 
 import { Ingredient } from '@shared/models/ingredient.model';
 
-//#region Store
+//#region State
+import { AppState } from '@app/store/app.state';
+import { RecipesState } from '@recipes/store/recipe.state';
+//#endregion
+
+//#region Actions
 import * as RecipeActions from '@recipes/store/recipe.actions';
-import * as fromRecipe from '@recipes/store/recipe.reducers';
+//#endregion
+
+//#region Selectors
+import { selectRecipeState } from '@app/recipes/store/recipe.selectors';
 //#endregion
 
 @Component({
@@ -21,7 +29,7 @@ export class RecipeEditComponent implements OnInit {
 
   private recipeId: number;
   private editMode = false;
-  constructor(private router: Router, private route: ActivatedRoute, private store: Store<fromRecipe.FeatureState>) {}
+  constructor(private router: Router, private route: ActivatedRoute, private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -50,9 +58,7 @@ export class RecipeEditComponent implements OnInit {
 
   onSubmit(): void {
     if (this.editMode) {
-      this.store.dispatch(
-        new RecipeActions.UpdateRecipe({ index: this.recipeId, updateRecipe: this.recipeForm.value })
-      );
+      this.store.dispatch(new RecipeActions.UpdateRecipe({ id: this.recipeId, newValue: this.recipeForm.value }));
     } else {
       this.store.dispatch(new RecipeActions.AddRecipe(this.recipeForm.value));
     }
@@ -71,9 +77,9 @@ export class RecipeEditComponent implements OnInit {
 
     if (this.editMode) {
       this.store
-        .select('recipes')
+        .select(selectRecipeState)
         .pipe(take(1))
-        .subscribe((recipeState: fromRecipe.State) => {
+        .subscribe((recipeState: RecipesState) => {
           const recipe = recipeState.recipes[this.recipeId];
           recipeName = recipe.name;
           recipeImagePath = recipe.imagePath;

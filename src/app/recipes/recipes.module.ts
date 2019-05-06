@@ -6,24 +6,25 @@ import { StoreModule } from '@ngrx/store';
 
 //#region Modules
 import { SharedModule } from '@shared/shared.module';
-import { RecipesRotingModule } from './recipes-routing.module';
+import { RecipesRoutingModule } from '@recipes/recipes-routing.module';
 //#endregion
 
 //#region Pages
-import { RecipesPageComponent } from './pages/recipes/recipes.page';
+import { RecipesPageComponent } from '@recipes/pages/recipes/recipes.page';
 //#endregion
 
 //#region Components
-import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
-import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
-import { RecipeInfoComponent } from './components/recipe-info/recipe-info.component';
-import { RecipeItemComponent } from './components/recipe-item/recipe-item.component';
-import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
+import { RecipeDetailComponent } from '@recipes/components/recipe-detail/recipe-detail.component';
+import { RecipeEditComponent } from '@recipes/components/recipe-edit/recipe-edit.component';
+import { RecipeInfoComponent } from '@recipes/components/recipe-info/recipe-info.component';
+import { RecipeItemComponent } from '@recipes/components/recipe-item/recipe-item.component';
+import { RecipeListComponent } from '@recipes/components/recipe-list/recipe-list.component';
 //#endregion
 
 //#region Store
-import { RecipeEffects } from './store/recipe.effects';
-import { recipeReducer } from './store/recipe.reducers';
+import { RecipeEffects } from '@recipes/store/recipe.effects';
+import { recipeReducer } from '@recipes/store/recipe.reducers';
+import { recipesInitialState } from './store/recipe.state';
 //#endregion
 
 @NgModule({
@@ -38,9 +39,11 @@ import { recipeReducer } from './store/recipe.reducers';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RecipesRotingModule,
+    RecipesRoutingModule,
     SharedModule,
-    StoreModule.forFeature('recipes', recipeReducer),
+    StoreModule.forFeature('recipes', recipeReducer, {
+      initialState: recipesInitialState
+    }),
     EffectsModule.forFeature([RecipeEffects])
   ]
 })

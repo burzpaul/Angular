@@ -1,54 +1,33 @@
-import { Recipe } from '@recipes/models/recipe.model';
-
-import { AppState } from '@app/store/app.state';
 import * as RecipeActions from '@recipes/store/recipe.actions';
+import { Recipes, recipeAdapter } from '@recipes/store/recipe.state';
 
-export interface FeatureState extends AppState {
-  recipes: State;
-}
-
-export interface State {
-  recipes: Recipe[];
-}
-
-const initialState: State = {
-  recipes: []
-};
-
-export function recipeReducer(state = initialState, action: RecipeActions.RecipeActions) {
+export function recipeReducer(state: Recipes, action: RecipeActions.RecipeActions): Recipes {
   switch (action.type) {
-    case RecipeActions.SET_RECIPES:
-      const newState = {
-        ...state,
-        recipes: [...action.payload]
-      };
-      console.log('SET STATE FOR RECIPES', newState);
-      return newState;
-    case RecipeActions.ADD_RECIPE:
-      return {
-        ...state,
-        recipes: [...state.recipes, action.payload]
-      };
-    case RecipeActions.UPDATE_RECIPE:
-      const recipe = state.recipes[action.payload.index];
-      const updatedRecipe = {
-        ...recipe,
-        ...action.payload.updateRecipe
-      };
-      const recipes = [...state.recipes];
-      recipes[action.payload.index] = updatedRecipe;
-      return {
-        ...state,
-        recipes
-      };
-    case RecipeActions.DELETE_RECIPE:
-      const oldRecipes = [...state.recipes];
-      oldRecipes.slice(action.payload, 1);
-      return {
-        ...state,
-        recipes: oldRecipes
-      };
+    case RecipeActions.RecipeActionTypes.SetRecipes:
+      return recipeAdapter.addAll(action.payload.recipes, state);
+    case RecipeActions.RecipeActionTypes.AddRecipe:
+      return recipeAdapter.addOne(action.payload.recipe, state);
+    case RecipeActions.RecipeActionTypes.UpdateRecipe:
+      return recipeAdapter.updateOne(
+        {
+          id: action.payload.id,
+          changes: action.payload.newValue
+        },
+        state
+      );
+    case RecipeActions.RecipeActionTypes.DeleteRecipe:
+      return recipeAdapter.removeOne(action.payload.id, state);
     default:
       return state;
   }
 }
+
+const { selectIds, selectEntities, selectAll, selectTotal } = recipeAdapter.getSelectors();
+
+export const selectRecipeIds = selectIds;
+
+export const selectRecipeEntities = selectEntities;
+
+export const selectAllRecipes = selectAll;
+
+export const selectRecipeTotal = selectTotal;

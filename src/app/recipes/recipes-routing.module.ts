@@ -25,4 +25,4 @@ const recipesRoutes: Routes = [
   imports: [RouterModule.forChild(recipesRoutes)],
   exports: [RouterModule],
 })
-export class RecipesRotingModule {}
+export class RecipesRoutingModule {}
