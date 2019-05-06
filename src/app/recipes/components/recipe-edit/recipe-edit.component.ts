@@ -4,11 +4,13 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 
+//#region Models
 import { Ingredient } from '@shared/models/ingredient.model';
+import { Recipe } from '@recipes/models/recipe.model';
+//#endregion
 
 //#region State
 import { AppState } from '@app/store/app.state';
-import { RecipesState } from '@recipes/store/recipe.state';
 //#endregion
 
 //#region Actions
@@ -16,7 +18,7 @@ import * as RecipeActions from '@recipes/store/recipe.actions';
 //#endregion
 
 //#region Selectors
-import { selectRecipeState } from '@app/recipes/store/recipe.selectors';
+import { selectRecipeById } from '@app/recipes/store/recipe.selectors';
 //#endregion
 
 @Component({
@@ -77,10 +79,9 @@ export class RecipeEditComponent implements OnInit {
 
     if (this.editMode) {
       this.store
-        .select(selectRecipeState)
+        .select(selectRecipeById(this.recipeId))
         .pipe(take(1))
-        .subscribe((recipeState: RecipesState) => {
-          const recipe = recipeState.recipes[this.recipeId];
+        .subscribe((recipe: Recipe) => {
           recipeName = recipe.name;
           recipeImagePath = recipe.imagePath;
           recipeDescription = recipe.description;

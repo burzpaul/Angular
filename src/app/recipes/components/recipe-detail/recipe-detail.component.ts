@@ -15,7 +15,7 @@ import * as ShoppingListAction from '@shoppList/store/shopping-list.actions';
 //#endregion
 
 //#region Selectors
-import { selectAllRecipes } from '@app/recipes/store/recipe.selectors';
+import { selectAllRecipes, selectRecipeById } from '@app/recipes/store/recipe.selectors';
 import { Recipe } from '@app/recipes/models/recipe.model';
 //#endregion
 
@@ -25,7 +25,7 @@ import { Recipe } from '@app/recipes/models/recipe.model';
   styleUrls: ['./recipe-detail.component.scss']
 })
 export class RecipeDetailComponent implements OnInit {
-  recipes$: Observable<Recipe[]>;
+  recipes$: Observable<Recipe>;
   recipeId: number;
 
   constructor(private router: Router, private route: ActivatedRoute, private store: Store<AppState>) {}
@@ -33,16 +33,16 @@ export class RecipeDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.recipeId = +params.id;
-      this.recipes$ = this.store.select(selectAllRecipes);
+      this.recipes$ = this.store.select(selectRecipeById(this.recipeId));
     });
   }
 
   onAddToShoppingList(): void {
     this.store
-      .select('recipes')
+      .select(selectRecipeById(this.recipeId))
       .pipe(take(1))
-      .subscribe((recipeState: RecipesState) => {
-        const ingredients = recipeState.recipes[this.recipeId].ingredients;
+      .subscribe((recipe: Recipe) => {
+        const ingredients = recipe.ingredients;
         this.store.dispatch(new ShoppingListAction.AddIngredients(ingredients));
       });
   }

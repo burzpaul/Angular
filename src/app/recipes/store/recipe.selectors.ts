@@ -22,3 +22,9 @@ export const selectAllRecipes: MemoizedSelector<AppState, Recipe[]> = createSele
   selectRecipeState,
   fromRecipes.selectAllRecipes
 );
+
+export const selectRecipeById = (id: number) =>
+  createSelector(
+    selectAllRecipes,
+    (recipes: Recipe[]) => recipes.find((recipe: Recipe) => recipe.id === id)
+  );

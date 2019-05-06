@@ -10,7 +10,7 @@ import { AppState } from '@app/store/app.state';
 //#endregion
 
 //#region Selectors
-import { selectRecipeState, selectAllRecipes } from '@app/recipes/store/recipe.selectors';
+import { selectAllRecipes } from '@recipes/store/recipe.selectors';
 //#endregion
 
 @Component({
@@ -24,7 +24,6 @@ export class RecipeListComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    debugger;
     this.recipes$ = this.store.select(selectAllRecipes);
   }
 

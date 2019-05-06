@@ -1,52 +1,44 @@
 <div class="row">
-  <div class="col-xs-12">
-    <img [src]="(recipes$ | async)[recipeId].imagePath"
-         alt="{{(recipes$ | async)[recipeId].name}}"
-         class="img-responsive"
-         style="max-height: 300px">
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <h1>{{(recipes$ | async)[recipeId].name}}</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <div class="btn-group"
-         appDropdown>
-      <button type="button"
-              class="btn btn-primary dropdown-toggle">
-        <span class="caret"></span>
-        Manage Recipe
-      </button>
-      <ul class="dropdown-menu">
-        <li>
-          <a (click)="onAddToShoppingList()"
-             style="cursor:pointer;">
-            To Shopping List
-          </a>
-        </li>
-        <li><a style="cursor:pointer;"
-             (click)="onEditRecipe()">Edit Recipe</a></li>
-        <li><a style="cursor:pointer;"
-             (click)="onDeleteRecipe()">Delete Recipe</a></li>
-      </ul>
+    <div class="col-xs-12">
+        <img [src]="(recipes$ | async).imagePath" alt="{{(recipes$ | async).name}}" class="img-responsive"
+            style="max-height: 300px">
     </div>
-  </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    {{(recipes$ | async)[recipeId].description}}
-  </div>
+    <div class="col-xs-12">
+        <h1>{{(recipes$ | async).name}}</h1>
+    </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    <ul class="list-group">
-      <li class="list-group-item"
-          *ngFor="let ingredient of (recipes$ | async)[recipeId].ingredients">
-        {{ingredient.name}} - {{ingredient.amount}}
-      </li>
-    </ul>
-  </div>
+    <div class="col-xs-12">
+        <div class="btn-group" appDropdown>
+            <button type="button" class="btn btn-primary dropdown-toggle">
+                <span class="caret"></span>
+                Manage Recipe
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a (click)="onAddToShoppingList()" style="cursor:pointer;">
+                        To Shopping List
+                    </a>
+                </li>
+                <li><a style="cursor:pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
+                <li><a style="cursor:pointer;" (click)="onDeleteRecipe()">Delete Recipe</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        {{(recipes$ | async).description}}
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let ingredient of (recipes$ | async).ingredients">
+                {{ingredient.name}} - {{ingredient.amount}}
+            </li>
+        </ul>
+    </div>
 </div>
