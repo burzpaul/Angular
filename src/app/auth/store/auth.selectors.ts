@@ -1,15 +1,15 @@
 import { MemoizedSelector, createSelector } from '@ngrx/store';
 
 import { selectAuth } from '@app/store/app.selectors';
-import { AuthState } from '@auth/store/auth.state';
+import { AppState } from '@app/store/app.state';
+import { Auth, AuthState } from '@auth/store/auth.state';
 
-export const selectToken: MemoizedSelector<object, string> = createSelector(
+export const selectToken: MemoizedSelector<AuthState, string> = createSelector(
   selectAuth,
-  (state: AuthState) => state.token
+  (state: Auth) => state.token
 );
 
-export const selectIsAuthenticated: MemoizedSelector<object, boolean> = createSelector(
-    selectAuth,
-    (state: AuthState) => state.authenticated
-  );
-  
+export const selectIsAuthenticated: MemoizedSelector<AppState, boolean> = createSelector(
+  selectAuth,
+  (state: Auth) => state.authenticated
+);

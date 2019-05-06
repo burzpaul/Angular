@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 //#region State
 import { AppState } from '@app/store/app.state';
-import { AuthState } from '@auth/store/auth.state';
+import { Auth } from '@auth/store/auth.state';
 //#endregion
 
 //#region Actions
@@ -23,7 +23,7 @@ import { selectAuth } from '@app/store/app.selectors';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
-  authState: Observable<AuthState>;
+  authState: Observable<Auth>;
 
   constructor(private store: Store<AppState>) {}
 

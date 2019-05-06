@@ -1,17 +1,17 @@
 import { AuthActions, AuthActionsTypes } from '@auth/store/auth.actions';
-import { AuthState, initialState } from '@auth/store/auth.state';
+import { Auth, authInitialState } from '@auth/store/auth.state';
 
-export function authReducer(state = initialState, action: AuthActions): AuthState {
+export function authReducer(state = authInitialState, action: AuthActions): Auth {
   switch (action.type) {
-    case AuthActionsTypes.SIGNUP:
-    case AuthActionsTypes.SIGNIN:
+    case AuthActionsTypes.SignUp:
+    case AuthActionsTypes.SignIn:
       return {
         ...state,
         authenticated: true
       };
-    case AuthActionsTypes.SET_TOKEN:
+    case AuthActionsTypes.SetToken:
       return { ...state, token: action.payload };
-    case AuthActionsTypes.LOGOUT:
+    case AuthActionsTypes.LogOut:
       return {
         ...state,
         token: null,

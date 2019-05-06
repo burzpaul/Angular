@@ -1,9 +1,13 @@
-export interface AuthState {
+export interface Auth {
   token: string;
   authenticated: boolean;
 }
 
-export const initialState: AuthState = {
+export interface AuthState {
+  readonly auth: Auth;
+}
+
+export const authInitialState: Auth = {
   token: null,
   authenticated: false
 };

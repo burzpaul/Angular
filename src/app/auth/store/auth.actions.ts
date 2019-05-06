@@ -1,40 +1,40 @@
 import { Action } from '@ngrx/store';
 
 export enum AuthActionsTypes {
-  TRY_SIGNUP = '[AUTH] TRY_SIGNUP',
-  SIGNUP = '[AUTH] SIGNUP',
-  TRY_SIGNIN = '[AUTH] TRY_SIGNIN',
-  SIGNIN = '[AUTH] SIGNIN',
-  LOGOUT = '[AUTH] LOGOUT',
-  SET_TOKEN = '[AUTH] SET_TOKEN'
+  TrySignUp = '[AUTH] TrySignUp',
+  SignUp = '[AUTH] SignUp',
+  TrySignIn = '[AUTH] TrySignIn',
+  SignIn = '[AUTH] SignIn',
+  LogOut = '[AUTH] LogOut',
+  SetToken = '[AUTH] SetToken'
 }
 
 export class TrySignUp implements Action {
-  readonly type = AuthActionsTypes.TRY_SIGNUP;
+  readonly type = AuthActionsTypes.TrySignUp;
 
   constructor(public payload: { userName: string; password: string }) {}
 }
 
 export class SignUp implements Action {
-  readonly type = AuthActionsTypes.SIGNUP;
+  readonly type = AuthActionsTypes.SignUp;
 }
 
 export class TrySignIn implements Action {
-  readonly type = AuthActionsTypes.TRY_SIGNIN;
+  readonly type = AuthActionsTypes.TrySignIn;
 
   constructor(public payload: { userName: string; password: string }) {}
 }
 
 export class SignIn implements Action {
-  readonly type = AuthActionsTypes.SIGNIN;
+  readonly type = AuthActionsTypes.SignIn;
 }
 
 export class LogOut implements Action {
-  readonly type = AuthActionsTypes.LOGOUT;
+  readonly type = AuthActionsTypes.LogOut;
 }
 
 export class SetToken implements Action {
-  readonly type = AuthActionsTypes.SET_TOKEN;
+  readonly type = AuthActionsTypes.SetToken;
 
   constructor(public payload: string) {}
 }

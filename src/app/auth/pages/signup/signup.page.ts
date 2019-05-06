@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 //#region State
-import { AppState } from '@app/store/app.state';
+import { AuthState } from '@app/auth/store/auth.state';
 //#endregion
 
 //#region Actions
@@ -16,7 +16,8 @@ import * as AuthActions from '@auth/store/auth.actions';
   styleUrls: ['./signup.page.scss']
 })
 export class SignupPageComponent {
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AuthState>) {}
+
   onSignup(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;

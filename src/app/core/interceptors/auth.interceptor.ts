@@ -9,11 +9,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 
-
-
 //#region State
 import { AppState } from '@app/store/app.state';
-import { AuthState } from '@auth/store/auth.state'
+import { Auth } from '@auth/store/auth.state'
 //#endregion
 
 //#region Selectors
@@ -32,7 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return this.store.select(selectAuth).pipe(
       take(1),
-      switchMap((authState: AuthState) => {
+      switchMap((authState: Auth) => {
         const copiedReq = req.clone({
           params: req.params.set('auth', authState.token),
         });

@@ -10,23 +10,23 @@ import * as AuthActions from '@auth/store/auth.actions';
 @Injectable()
 export class AuthEffects {
   @Effect()
-  authSignUp = this.actions$.pipe(
-    ofType(AuthActions.AuthActionsTypes.TRY_SIGNUP),
+  authSignUp$ = this.actions$.pipe(
+    ofType(AuthActions.AuthActionsTypes.TrySignUp),
     map((action: AuthActions.TrySignUp) => action.payload),
     switchMap((authData: { userName: string; password: string }) =>
       from(firebase.auth().createUserWithEmailAndPassword(authData.userName, authData.password))
     ),
     switchMap(() => from(firebase.auth().currentUser.getIdToken())),
     mergeMap((token: string) => [
-      { type: AuthActions.AuthActionsTypes.SIGNUP },
-      { type: AuthActions.AuthActionsTypes.SET_TOKEN, payload: token }
+      { type: AuthActions.AuthActionsTypes.SignUp },
+      { type: AuthActions.AuthActionsTypes.SetToken, payload: token }
     ])
   );
 
   @Effect()
-  authSignIn = this.actions$.pipe(
-    ofType(AuthActions.AuthActionsTypes.TRY_SIGNIN),
-    map((action: AuthActions.TrySignUp) => action.payload),
+  authSignIn$ = this.actions$.pipe(
+    ofType(AuthActions.AuthActionsTypes.TrySignIn),
+    map((action: AuthActions.TrySignIn) => action.payload),
     switchMap((authData: { userName: string; password: string }) =>
       from(firebase.auth().signInWithEmailAndPassword(authData.userName, authData.password))
     ),
@@ -34,15 +34,15 @@ export class AuthEffects {
     mergeMap((token: string) => {
       this.router.navigate(['/']);
       return [
-        { type: AuthActions.AuthActionsTypes.SIGNIN },
-        { type: AuthActions.AuthActionsTypes.SET_TOKEN, payload: token }
+        { type: AuthActions.AuthActionsTypes.SignIn },
+        { type: AuthActions.AuthActionsTypes.SetToken, payload: token }
       ];
     })
   );
 
   @Effect({ dispatch: false })
-  authLogOut = this.actions$.pipe(
-    ofType(AuthActions.AuthActionsTypes.LOGOUT),
+  authLogOut$ = this.actions$.pipe(
+    ofType(AuthActions.AuthActionsTypes.LogOut),
     tap(() => this.router.navigate(['/']))
   );
 
